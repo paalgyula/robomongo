@@ -48,7 +48,7 @@ namespace Robomongo
 
         setWindowTitle("Add User");
         setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); // Remove help button (?)
-        setMinimumSize(minimumSize);
+        setFixedSize(QSize( 500, 300 ));
 
         Indicator *serverIndicator = new Indicator(GuiRegistry::instance().serverIcon(), serverName);
         Indicator *databaseIndicator = new Indicator(GuiRegistry::instance().databaseIcon(), database);

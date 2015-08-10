@@ -3,6 +3,8 @@
 #include <QAction>
 #include <QMenu>
 
+#include "robomongo/gui/GuiRegistry.h"
+
 #include "robomongo/gui/dialogs/FunctionTextEditor.h"
 #include "robomongo/gui/dialogs/CreateUserDialog.h"
 #include "robomongo/gui/widgets/explorer/ExplorerDatabaseTreeItem.h"
@@ -37,6 +39,7 @@ namespace Robomongo
             VERIFY(connect(dbCollectionsStats, SIGNAL(triggered()), SLOT(ui_dbCollectionsStatistics())));
 
             QAction *refreshCollections = new QAction("Refresh", this);
+            refreshCollections->setIcon( GuiRegistry::instance().refreshIcon() );
             VERIFY(connect(refreshCollections, SIGNAL(triggered()), SLOT(ui_refreshCollections())));
 
             BaseClass::_contextMenu->addAction(dbCollectionsStats);
@@ -47,12 +50,15 @@ namespace Robomongo
         else if (_category == Users) {
 
             QAction *refreshUsers = new QAction("Refresh", this);
+            refreshUsers->setIcon( GuiRegistry::instance().refreshIcon() );
             VERIFY(connect(refreshUsers, SIGNAL(triggered()), SLOT(ui_refreshUsers())));
 
             QAction *viewUsers = new QAction("View Users", this);
+            viewUsers->setIcon( GuiRegistry::instance().userIcon() );
             VERIFY(connect(viewUsers, SIGNAL(triggered()), SLOT(ui_viewUsers())));
 
             QAction *addUser = new QAction("Add User...", this);
+            addUser->setIcon( GuiRegistry::instance().userIcon() );
             VERIFY(connect(addUser, SIGNAL(triggered()), SLOT(ui_addUser())));
 
             BaseClass::_contextMenu->addAction(viewUsers);
@@ -63,6 +69,7 @@ namespace Robomongo
         else if (_category == Functions) {
 
             QAction *refreshFunctions = new QAction("Refresh", this);
+            refreshFunctions->setIcon( GuiRegistry::instance().refreshIcon() );
             VERIFY(connect(refreshFunctions, SIGNAL(triggered()), SLOT(ui_refreshFunctions())));
 
             QAction *viewFunctions = new QAction("View Functions", this);

@@ -62,6 +62,12 @@ namespace Robomongo
         return collectionIc;
     }
 
+    const QIcon &GuiRegistry::collectionsIcon() const
+    {
+        static const QIcon collectionIc = QIcon(":/robomongo/icons/collections_16x16.png");
+        return collectionIc;
+    }
+
     const QIcon &GuiRegistry::indexIcon() const
     {
         static const QIcon collectionIc = QIcon(":/robomongo/icons/index_16x16.png");
@@ -72,6 +78,12 @@ namespace Robomongo
     {
         static const QIcon userIc = QIcon(":/robomongo/icons/user_16x16.png");
         return userIc;
+    }
+
+    const QIcon &GuiRegistry::usersIcon() const
+    {
+        static const QIcon usersIcon = QIcon(":/robomongo/icons/users_16x16.png");
+        return usersIcon;
     }
 
     const QIcon &GuiRegistry::functionIcon() const
@@ -241,6 +253,30 @@ namespace Robomongo
     {
         static const QIcon keyIc = QIcon(":/robomongo/icons/key_16x16.png");
         return keyIc;
+    }
+
+    const QIcon &GuiRegistry::ranchIcon() const
+    {
+        static const QIcon ranchIcon = QIcon(":/robomongo/icons/ranch_16x16.png");
+        return ranchIcon;
+    }
+
+    const QIcon &GuiRegistry::addUserIcon() const
+    {
+        static const QIcon addUserIcon = QIcon(":/robomongo/icons/user_add_16x16.png");
+        return addUserIcon;
+    }
+
+    const QIcon &GuiRegistry::removeUserIcon() const
+    {
+        static const QIcon removeUserIcon = QIcon(":/robomongo/icons/user_remove_16x16.png");
+        return removeUserIcon;
+    }
+
+    const QIcon &GuiRegistry::refreshIcon() const
+    {
+        static const QIcon refreshIcon = QIcon(":/robomongo/icons/reload_16x16.png");
+        return refreshIcon;
     }
 
     const QBrush &GuiRegistry::typeBrush() const

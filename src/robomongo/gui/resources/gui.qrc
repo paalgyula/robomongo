@@ -47,5 +47,11 @@
         <file>icons/stop_24x24.png</file>
         <file>icons/function_16x16.png</file>
         <file>icons/index_16x16.png</file>
+        <file>icons/collections_16x16.png</file>
+        <file>icons/users_16x16.png</file>
+        <file>icons/ranch-16x16.png</file>
+        <file>icons/user_remove_16x16.png</file>
+        <file>icons/user_add_16x16.png</file>
+        <file>icons/reload_16x16.png</file>
     </qresource>
 </RCC>

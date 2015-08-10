@@ -33,8 +33,10 @@ namespace Robomongo
         const QIcon &openIcon() const;
         const QIcon &databaseIcon() const;
         const QIcon &collectionIcon() const;
+        const QIcon &collectionsIcon() const;
         const QIcon &indexIcon() const;
         const QIcon &userIcon() const;
+        const QIcon &usersIcon() const;
         const QIcon &functionIcon() const;
         const QIcon &maximizeIcon() const;
         const QIcon &maximizeHighlightedIcon() const;
@@ -70,6 +72,15 @@ namespace Robomongo
         const QIcon &yesMarkIcon() const;
         const QIcon &timeIcon() const;
         const QIcon &keyIcon() const;
+        const QIcon &ranchIcon() const;
+
+        /* User icon */
+        const QIcon &addUserIcon() const;
+        const QIcon &removeUserIcon() const;
+
+        /* Refresh */
+        const QIcon &refreshIcon() const;
+
 
         const QBrush &typeBrush() const;
 

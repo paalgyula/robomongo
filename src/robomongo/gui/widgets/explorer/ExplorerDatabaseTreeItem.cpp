@@ -86,17 +86,17 @@ namespace Robomongo
 
         _collectionFolderItem = new ExplorerDatabaseCategoryTreeItem(this,Collections);
         _collectionFolderItem->setText(0, "Collections");
-        _collectionFolderItem->setIcon(0, GuiRegistry::instance().folderIcon());
+        _collectionFolderItem->setIcon(0, GuiRegistry::instance().collectionsIcon());
         addChild(_collectionFolderItem);
 
         _javascriptFolderItem = new ExplorerDatabaseCategoryTreeItem(this,Functions);
         _javascriptFolderItem->setText(0, "Functions");
-        _javascriptFolderItem->setIcon(0, GuiRegistry::instance().folderIcon());
+        _javascriptFolderItem->setIcon(0, GuiRegistry::instance().functionIcon());
         addChild(_javascriptFolderItem);
         
         _usersFolderItem = new ExplorerDatabaseCategoryTreeItem(this,Users);
         _usersFolderItem->setText(0, "Users");
-        _usersFolderItem->setIcon(0, GuiRegistry::instance().folderIcon());
+        _usersFolderItem->setIcon(0, GuiRegistry::instance().usersIcon());
         addChild(_usersFolderItem);
     }
 
@@ -143,7 +143,7 @@ namespace Robomongo
 
         QtUtils::clearChildItems(_collectionFolderItem);
         _collectionSystemFolderItem = new ExplorerTreeItem(_collectionFolderItem);
-        _collectionSystemFolderItem->setIcon(0, GuiRegistry::instance().folderIcon());
+        _collectionSystemFolderItem->setIcon(0, GuiRegistry::instance().ranchIcon());
         _collectionSystemFolderItem->setText(0, "System");
         _collectionFolderItem->addChild(_collectionSystemFolderItem);
 
