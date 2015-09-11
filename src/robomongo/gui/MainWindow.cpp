@@ -115,9 +115,9 @@ namespace Robomongo
 
         qApp->setStyleSheet(QString(
             "QWidget#queryWidget { background-color:#E7E5E4; margin: 0px; padding:0px; } \n"
-            "Robomongo--ExplorerTreeWidget#explorerTree { padding: 1px 0px 0px 0px; background-color: %1; border: 0px; } \n"
+            //"Robomongo--ExplorerTreeWidget#explorerTree { padding: 1px 0px 0px 0px; background-color: %1; border: 0px; } \n"
             "QMainWindow::separator { background: #E7E5E4; width: 1px; } "
-        ).arg(explorerColor));
+        ));//.arg(explorerColor));
 
         _openAction = new QAction(GuiRegistry::instance().openIcon(), tr("&Open..."), this);
         _openAction->setToolTip(QString("Load script from the file to the currently opened shell <b>(%1 + O)</b>").arg(controlKey));
@@ -250,7 +250,10 @@ namespace Robomongo
     /*** View menu ***/
         _viewMenu = menuBar()->addMenu("View");
         // adds option to toggle Explorer and Logs panels
+
+
         createDatabaseExplorer();
+
         _toolbarsMenu = _viewMenu->addMenu(tr("Toolbars"));
         // adds Themes submenu
         createStylesMenu();
@@ -907,13 +910,30 @@ namespace Robomongo
         AppRegistry::instance().bus()->subscribe(explorer, ConnectionFailedEvent::Type);
         AppRegistry::instance().bus()->subscribe(explorer, ConnectionEstablishedEvent::Type);
 
-        QDockWidget *explorerDock = new QDockWidget(tr("Database Explorer"));
+        QDockWidget *explorerDock = new QDockWidget(tr("Database Explorer"), this);
+        explorerDock->setFloating(false);
+        explorerDock->move(QPoint(-5000, -5000)); // Hack for hiding floating widget
         explorerDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         explorerDock->setWidget(explorer);
         explorerDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable);
 
         QWidget *titleWidget = new QWidget(this);         // this lines simply remove
+        QHBoxLayout *titleLayout = new QHBoxLayout();
+
+        // Database icon
+        QLabel *iconLabel = new QLabel("", titleWidget);
+        QSize labelSize(16, 16);
+        iconLabel->setPixmap(GuiRegistry::instance().databaseIcon().pixmap(labelSize));
+        iconLabel->setFixedSize(labelSize);
+        titleLayout->addWidget(iconLabel);
+
+        // Title
+        QLabel *titleLabel = new QLabel(tr("Database Explorer"), titleWidget);
+        titleLayout->addWidget(titleLabel);
+
+        titleWidget->setLayout(titleLayout);
         explorerDock->setTitleBarWidget(titleWidget);     // title bar widget.
+
         explorerDock->setVisible(AppRegistry::instance().settingsManager()->toolbars()["explorer"].toBool());
         
         QAction *actionExp = explorerDock->toggleViewAction();
@@ -930,7 +950,8 @@ namespace Robomongo
 
         LogWidget *log = new LogWidget(this);        
         VERIFY(connect(&Logger::instance(), SIGNAL(printed(const QString&, mongo::LogLevel)), log, SLOT(addMessage(const QString&, mongo::LogLevel))));
-        _logDock = new QDockWidget(tr("Logs"));
+        _logDock = new QDockWidget(tr("Logs"), this);
+        _logDock->setFloating(false);
         _logDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
         _logDock->setWidget(log);
         _logDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable);
@@ -971,6 +992,8 @@ namespace Robomongo
         hlayout->addWidget(_workArea);
         QWidget *window = new QWidget;
         window->setLayout(hlayout);
+
+
 
         setCentralWidget(window);
     }
